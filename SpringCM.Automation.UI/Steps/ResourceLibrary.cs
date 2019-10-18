@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SpringCM.Automation.PageObjects;
+using System;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace SpringCM.Automation.UI.Steps
@@ -16,7 +18,7 @@ namespace SpringCM.Automation.UI.Steps
         [Given(@"I have the application running")]
         public void GivenIHaveTheApplicationRunning()
         {
-            _homePage = (HomePage)Application.GetPage(Pages.Home);
+            _homePage = (HomePage)Application.GoTo(Pages.Home);
         }
 
         [When(@"I select the '(.*)' from the navigation")]
@@ -40,7 +42,7 @@ namespace SpringCM.Automation.UI.Steps
         [Then(@"The defualt page content is displayed on the '(.*)' page")]
         public void ThenTheDefualtPageContentIsDisplayedOnThePage(string pageName)
         {
-            Assert.AreEqual(Application.CurrentPage.Name, pageName);
+            Assert.AreEqual(pageName, Application.CurrentPage.PageIdentifier);
         }
 
         [Then(@"The '(.*)' dropdown list is displayed")]
@@ -62,9 +64,11 @@ namespace SpringCM.Automation.UI.Steps
         {
             var resourcesPage = (ResourceLibrayPage)Application.GetPage(Pages.ResourceLibrary);
             var resourceContents = resourcesPage.GetResourceContents();
+
             foreach (var resourceContent in resourceContents)
             {
-                Assert.IsTrue(resourceContent.ContentType.ToLower() == contentType.ToLower());
+                Assert.IsTrue(string.Equals(resourceContent.ContentType, contentType,
+                    StringComparison.InvariantCultureIgnoreCase));
             }
         }
 

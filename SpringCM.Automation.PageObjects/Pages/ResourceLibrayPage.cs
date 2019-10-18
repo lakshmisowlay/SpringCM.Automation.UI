@@ -10,7 +10,7 @@ namespace SpringCM.Automation.PageObjects
 
         public ResourceLibrayPage(IWebDriver webDriver) : base(webDriver)
         {
-            Name = "Resources";
+            PageIdentifier = "Resources";
         }
 
         public bool DropdownPresent(string dropDown)

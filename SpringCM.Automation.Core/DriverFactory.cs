@@ -5,7 +5,6 @@ using OpenQA.Selenium.IE;
 
 namespace SpringCM.Automation.Core
 {
-
     public sealed class DriverFactory
     {
         public static DriverFactory Instance { get; }

@@ -8,13 +8,10 @@ namespace SpringCM.Automation.Core
 {
     public class SpringCMApplication
     {
-        private static string BaseUrl => ApplicationConfigManager.Instance.GetConfig("base_url");
-
-        private static string Browser => ApplicationConfigManager.Instance.GetConfig("browser");
         public IPage CurrentPage => GetCurrentPage();
 
-
-
+        private static string BaseUrl => ApplicationConfigManager.Instance.GetConfig("base_url");
+        private static string Browser => ApplicationConfigManager.Instance.GetConfig("browser");
         private IWebDriver _webDriver;
         private Dictionary<Pages, string> _pages;
 
@@ -22,14 +19,17 @@ namespace SpringCM.Automation.Core
         {
             var implicitWait = int.Parse(ApplicationConfigManager.Instance.GetConfig("implicit_wait_in_ms"));
             var pageWait = int.Parse(ApplicationConfigManager.Instance.GetConfig("page_wait_in_ms"));
+
             _webDriver = DriverFactory.Instance.GetDriver(Browser);
             _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(implicitWait);
             _webDriver.Manage().Timeouts().PageLoad = TimeSpan.FromMilliseconds(pageWait);
-            InitializePages();
+
+            InitializePageRoutes();
         }
 
-        private void InitializePages()
+        private void InitializePageRoutes()
         {
+            //TODO: Move to routes.json
             _pages = new Dictionary<Pages, string>
             {
                 {Pages.Home, BaseUrl},
@@ -43,7 +43,8 @@ namespace SpringCM.Automation.Core
 
         public IPage GoTo(Pages page, bool waitForPageLoad = false)
         {
-            var url = _pages.First(p => p.Key == page).Value;
+            var url = _pages[page];
+
             var uri = new Uri(url);
             if (_webDriver.Url != url)
             {
@@ -63,13 +64,6 @@ namespace SpringCM.Automation.Core
             }
         }
 
-        public void WaitForPageLoad(Pages page)
-        {
-            var waitTimeInMs = int.Parse(ApplicationConfigManager.Instance.GetConfig("page_wait_in_ms"));
-            _webDriver
-                .Wait()
-                .ForDuration(TimeSpan.FromMilliseconds(waitTimeInMs));
-        }
         public IPage GetPage(Pages page)
         {
             switch (page)
@@ -82,7 +76,6 @@ namespace SpringCM.Automation.Core
                     return new ResourceLibrayPage(_webDriver);
                 case Pages.SearchResult:
                     return new SearchResultPage(_webDriver);
-
                 case Pages.ContractManagement:
                     return new ContractManagementPage(_webDriver);
                 case Pages.Video:
@@ -106,7 +99,6 @@ namespace SpringCM.Automation.Core
             var page = _pages.FirstOrDefault(p => p.Value == urlWithoutQueryString).Key;
             return GetPage(page);
         }
-
 
         public void SwitchToLatestHandle()
         {

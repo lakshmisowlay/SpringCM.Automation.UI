@@ -2,6 +2,6 @@
 {
     public interface IPage
     {
-        string Name { get; set; }
+        string PageIdentifier { get; set; }
     }
 }

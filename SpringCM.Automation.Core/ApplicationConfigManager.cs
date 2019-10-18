@@ -33,17 +33,5 @@ namespace SpringCM.Automation.Core
             }
         }
 
-        public string GetConfig(string section, string key)
-        {
-            try
-            {
-                return _configuration.GetSection(section)[key];
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex);
-                throw;
-            }
-        }
     }
 }

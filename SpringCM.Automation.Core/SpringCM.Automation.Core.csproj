@@ -121,7 +121,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationCache.cs" />
     <Compile Include="ApplicationConfigManager.cs" />
     <Compile Include="ApplicationContextExtensions.cs" />
     <Compile Include="ApplicationInstanceManager.cs" />

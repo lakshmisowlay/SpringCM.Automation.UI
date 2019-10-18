@@ -1,5 +1,6 @@
 ﻿namespace SpringCM.Automation.PageObjects
 {
+    //TODO: Move to a different library
     public class UserInfo
     {
         public string FirstName { get; set; }

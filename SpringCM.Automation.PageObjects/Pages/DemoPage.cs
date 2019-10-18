@@ -11,7 +11,7 @@ namespace SpringCM.Automation.PageObjects
 
         public DemoPage(IWebDriver webDriver) : base(webDriver)
         {
-            Name = "Demo";
+            PageIdentifier = "Demo";
             _videoForm = new VideoForm(WebDriver);
         }
 

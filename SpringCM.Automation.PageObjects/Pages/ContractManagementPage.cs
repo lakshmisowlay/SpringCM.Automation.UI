@@ -7,7 +7,7 @@ namespace SpringCM.Automation.PageObjects
         private IWebElement DemoLink => GetByLinkText("WATCH OUR PRODUCT DEMO");
         public ContractManagementPage(IWebDriver webDriver) : base(webDriver)
         {
-            Name = "Contract Management";
+            PageIdentifier = "Contract Management";
         }
 
         public void OpenDemo()

@@ -3,9 +3,6 @@
 	As a math idiot
 	I want to be told the sum of two numbers
 
-Background: I have the application running
-Given The application running
-
 Scenario: SpringCM Resource Library
 	Given I have the application running
 	When I select the 'Resources' from the navigation

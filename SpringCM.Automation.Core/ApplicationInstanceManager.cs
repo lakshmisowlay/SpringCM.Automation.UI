@@ -7,26 +7,23 @@ namespace SpringCM.Automation.Core
     {
         internal static ApplicationInstanceManager Instance { get; }
         internal readonly string InstanceKey = $"{Guid.NewGuid().ToString()}_Hash";
-        internal readonly string InfoKey = $"{Guid.NewGuid().ToString()}_Info";
 
-        private ConcurrentDictionary<Guid, SpringCMApplication> instanceStore;
+        private ConcurrentDictionary<Guid, SpringCMApplication> _instanceStore;
 
         static ApplicationInstanceManager()
         {
-            Instance = new ApplicationInstanceManager
-            {
-                instanceStore = new ConcurrentDictionary<Guid, SpringCMApplication>()
-            };
+            Instance = new ApplicationInstanceManager();
+            Instance._instanceStore = new ConcurrentDictionary<Guid, SpringCMApplication>();
         }
 
         internal SpringCMApplication Get(Guid guid)
         {
-            return instanceStore.GetOrAdd(guid, _ => new SpringCMApplication());
+            return _instanceStore.GetOrAdd(guid, _ => new SpringCMApplication());
         }
 
         internal void Remove(Guid guid)
         {
-            instanceStore.TryRemove(guid, out _);
+            _instanceStore.TryRemove(guid, out _);
         }
     }
 }

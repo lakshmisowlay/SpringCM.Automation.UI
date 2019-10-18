@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SpringCM.Automation.PageObjects;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SpringCM.Automation.UI
@@ -26,7 +27,7 @@ namespace SpringCM.Automation.UI
         [Then(@"Search field with '(.*)' is displayed")]
         public void ThenSearchFieldWithIsDisplayed(string placeHolder)
         {
-            Assert.AreEqual(_homePage.SearchFieldPlaceholder, placeHolder);
+            Assert.AreEqual(placeHolder, _homePage.SearchFieldPlaceholder);
         }
 
         [When(@"I enter '(.*)' on the search field")]
@@ -38,24 +39,40 @@ namespace SpringCM.Automation.UI
         [Then(@"'(.*)' is displayed on the search field")]
         public void ThenIsDisplayedOnTheSearchField(string searchText)
         {
-            Assert.AreEqual(_homePage.SearchText.ToLower(), searchText.ToLower());
+            Assert.IsTrue(searchText.Equals(_homePage.SearchText, StringComparison.InvariantCultureIgnoreCase));
         }
 
         [When(@"I scroll to the bottom of the search results")]
         public void WhenIScrollToTheBottomOfTheSearchResults()
         {
-            var searchResultPage = (SearchResultPage)Application.CurrentPage;
-            Assert.IsNotNull(searchResultPage);
+            try
+            {
+                var searchResultPage = (SearchResultPage)Application.CurrentPage;
 
-            searchResultPage.ScrollToEnd();
+                //TODO: Not required
+                searchResultPage.ScrollToEnd();
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+                Assert.Fail();
+            }
+
         }
 
         [Then(@"The '(.*)' link is visible")]
         public void ThenTheLinkIsVisible(string linkText)
         {
-            var searchResultPage = (SearchResultPage)Application.CurrentPage;
-            Assert.IsNotNull(searchResultPage);
-            Assert.IsTrue(searchResultPage.HasResults(linkText));
+            try
+            {
+                var searchResultPage = (SearchResultPage)Application.CurrentPage;
+                Assert.IsTrue(searchResultPage.HasResults(linkText));
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+                Assert.Fail();
+            }
         }
     }
 }

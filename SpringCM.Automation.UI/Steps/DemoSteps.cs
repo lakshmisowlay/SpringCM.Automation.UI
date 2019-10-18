@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Threading;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SpringCM.Automation.PageObjects;
 using TechTalk.SpecFlow;
 
@@ -37,7 +38,7 @@ namespace SpringCM.Automation.UI.Steps
         [Then(@"The '(.*)' page is displayed")]
         public void ThenTheContractManagementPageIsDisplayed(string pageName)
         {
-            Assert.AreEqual(Application.CurrentPage.Name, pageName);
+            Assert.AreEqual(pageName, Application.CurrentPage.PageIdentifier);
         }
 
         [When(@"I click on the Watch Our Product Demo button")]
@@ -51,7 +52,7 @@ namespace SpringCM.Automation.UI.Steps
         {
             Application.SwitchToLatestHandle();
             _demoPage = ((DemoPage)Application.CurrentPage);
-            Assert.AreEqual(_demoPage.Name, "Demo");
+            Assert.AreEqual("Demo", _demoPage.PageIdentifier);
         }
 
         [When(@"I play the demo by clearing the fields")]
@@ -61,12 +62,14 @@ namespace SpringCM.Automation.UI.Steps
             _demoPage.PlayDemo();
         }
 
+        //TODO: Pass eror message as param
         [Then(@"The validation messages are displayed")]
         public void ThenTheValidationMessagesAreDisplayed()
         {
-            Assert.AreEqual(_demoPage.RequiredFieldValidationMessage(), $"Please complete this required field.");
+            Assert.AreEqual($"Please complete this required field.", _demoPage.RequiredFieldValidationMessage());
         }
 
+        //TODO: Write a custom transform
         [When(@"I fill in the required fields and play video")]
         public void WhenIFillInTheRequiredFieldsAndClickButton(Table fieldInfo)
         {

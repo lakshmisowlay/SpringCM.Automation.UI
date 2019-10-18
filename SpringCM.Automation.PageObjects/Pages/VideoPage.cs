@@ -8,7 +8,7 @@ namespace SpringCM.Automation.PageObjects
 
         public VideoPage(IWebDriver webDriver) : base(webDriver)
         {
-            Name = "Video";
+            PageIdentifier = "Video";
         }
 
     }

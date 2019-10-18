@@ -7,7 +7,7 @@ namespace SpringCM.Automation.PageObjects
 
         public SearchResultPage(IWebDriver webDriver) : base(webDriver)
         {
-            Name = "Search Results";
+            PageIdentifier = "Search Results";
         }
 
         public bool HasResults(string linkText)

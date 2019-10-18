@@ -8,6 +8,8 @@ namespace SpringCM.Automation.PageObjects
     public class BasePage : IPage
     {
         private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
+
+        public string PageIdentifier { get; set; }
         public IWebDriver WebDriver { get; }
 
         public BasePage(IWebDriver webDriver)
@@ -17,10 +19,15 @@ namespace SpringCM.Automation.PageObjects
 
         public void ScrollToEnd()
         {
-            WebDriver.ScrollToBottom();
+            //WebDriver.ScrollToBottom();
+        }
+        public void MouseHover(IWebElement menuItem)
+        {
+            Actions action = new Actions(WebDriver);
+            action.MoveToElement(menuItem).Perform();
         }
 
-        protected IWebElement GetByLinkText(string linkText, int waitTimeInSeconds = 10)
+        protected IWebElement GetByLinkText(string linkText)
         {
             try
             {
@@ -32,7 +39,7 @@ namespace SpringCM.Automation.PageObjects
                 return default;
             }
         }
-        protected IWebElement GetById(string automationId, int waitTimeInSeconds = 10)
+        protected IWebElement GetById(string automationId)
         {
             try
             {
@@ -44,7 +51,7 @@ namespace SpringCM.Automation.PageObjects
                 return default;
             }
         }
-        protected IWebElement GetByCss(string cssSelector, int waitTimeInSeconds = 10)
+        protected IWebElement GetByCss(string cssSelector)
         {
             try
             {
@@ -56,20 +63,7 @@ namespace SpringCM.Automation.PageObjects
                 return default;
             }
         }
-        protected IWebElement GetByClass(string automationClass, int waitTimeInSeconds = 10)
-        {
-            try
-            {
-                return WebDriver.FindElement(By.ClassName(automationClass));
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex);
-                return default;
-            }
-        }
-
-        protected IWebElement GetByXPath(string xPath, int waitTimeInSeconds = 10)
+        protected IWebElement GetByXPath(string xPath)
         {
             try
             {
@@ -81,13 +75,5 @@ namespace SpringCM.Automation.PageObjects
                 return default;
             }
         }
-
-        public void MouseHover(IWebElement menuItem)
-        {
-            Actions action = new Actions(WebDriver);
-            action.MoveToElement(menuItem).Perform();
-        }
-
-        public string Name { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace SpringCM.Automation.PageObjects
 
         public HomePage(IWebDriver webDriver) : base(webDriver)
         {
-            Name = "Home";
+            PageIdentifier = "Home";
         }
 
         public string SearchFieldPlaceholder => TxtSearchField.GetProperty("placeholder");
