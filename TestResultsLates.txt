@@ -1,0 +1,199 @@
+Group Name: SpringCM.Automation.UI
+Group By: Hierarchy
+Group Full Name: SpringCM.Automation.UI
+Duration: 0:02:50.5303531
+0 test(s) failed
+0 test(s) skipped
+11 test(s) passed
+
+Result1 Name:	ContractManagementDemoPageDisplayed
+Result1 Outcome:	Passed
+Result1 Duration:	0:00:18.5090784
+Result1 StackTrace:
+Result1 Message:
+Result1 StandardOutput:	
+Given The application running
+-> done: DemoSteps.GivenIHaveTheApplicationRunning() (7.4s)
+And The 'Contract management Software | SpringCM' is dispalyed in search results
+-> done: DemoSteps.GivenTheIsDispalyedInSearchResults("Contract manageme...") (2.3s)
+When I click on The 'Contract Management Software | SpringCM' result
+-> done: DemoSteps.WhenIClickOnTheLink("Contract Manageme...") (3.4s)
+And I click on the Watch Our Product Demo button
+-> done: DemoSteps.WhenIClickOnTheButton() (0.6s)
+Then The Contract Management Demo page is displayed
+-> done: DemoSteps.ThenTheContractManagementDemoPageIsDisplayed() (2.8s)
+Result1 StandardError:
+
+Result2 Name:	ContractManagementFormValidation
+Result2 Outcome:	Passed
+Result2 Duration:	0:00:18.4881316
+Result2 StackTrace:
+Result2 Message:
+Result2 StandardOutput:	
+Given The application running
+-> done: DemoSteps.GivenIHaveTheApplicationRunning() (7.8s)
+And The 'Contract management Software | SpringCM' is dispalyed in search results
+-> done: DemoSteps.GivenTheIsDispalyedInSearchResults("Contract manageme...") (1.8s)
+When I click on The 'Contract Management Software | SpringCM' result
+-> done: DemoSteps.WhenIClickOnTheLink("Contract Manageme...") (4.4s)
+And I click on the Watch Our Product Demo button
+-> done: DemoSteps.WhenIClickOnTheButton() (0.4s)
+And I play the demo by clearing the fields
+-> done: DemoSteps.WhenIPlayTheDemo() (3.1s)
+Then The validation messages are displayed
+-> done: DemoSteps.ThenTheValidationMessagesAreDisplayed() (0.1s)
+Result2 StandardError:
+
+Result3 Name:	ContractManagementPageIsDisplayed
+Result3 Outcome:	Passed
+Result3 Duration:	0:00:26.7919809
+Result3 StackTrace:
+Result3 Message:
+Result3 StandardOutput:	
+-> Loading plugin C:\Users\narasimhappa nagendr\source\repos\DocuSign\SpringCM.Automation.UI\SpringCM.Automation.UI\bin\Debug\TechTalk.SpecFlow.MSTest.SpecFlowPlugin.dll
+-> Using specflow.json
+Given The application running
+-> done: DemoSteps.GivenIHaveTheApplicationRunning() (17.5s)
+And The 'Contract management Software | SpringCM' is dispalyed in search results
+-> done: DemoSteps.GivenTheIsDispalyedInSearchResults("Contract manageme...") (2.0s)
+When I click on The 'Contract Management Software | SpringCM' result
+-> done: DemoSteps.WhenIClickOnTheLink("Contract Manageme...") (3.6s)
+Then The 'Contract Management' page is displayed
+-> done: DemoSteps.ThenTheContractManagementPageIsDisplayed("Contract Management") (0.1s)
+Result3 StandardError:
+
+Result4 Name:	SearchFieldIsDispalyed
+Result4 Outcome:	Passed
+Result4 Duration:	0:00:09.5548665
+Result4 StackTrace:
+Result4 Message:
+Result4 StandardOutput:	
+Given The application running
+-> done: SearchSteps.GivenIHaveTheApplicationRunning() (8.5s)
+When I click on search button
+-> done: SearchSteps.WhenIClickOnSearchButton() (0.1s)
+Then Search field with 'Search' is displayed
+-> done: SearchSteps.ThenSearchFieldWithIsDisplayed("Search") (0.0s)
+Result4 StandardError:
+
+Result5 Name:	SearchResultIsAvailable
+Result5 Outcome:	Passed
+Result5 Duration:	0:00:10.7454373
+Result5 StackTrace:
+Result5 Message:
+Result5 StandardOutput:	
+Given The application running
+-> done: SearchSteps.GivenIHaveTheApplicationRunning() (7.6s)
+When I click on search button
+-> done: SearchSteps.WhenIClickOnSearchButton() (0.1s)
+And I enter 'Contract Management' on the search field
+-> done: SearchSteps.WhenIEnterOnTheSearchField("Contract Management") (2.0s)
+And I scroll to the bottom of the search results
+-> done: SearchSteps.WhenIScrollToTheBottomOfTheSearchResults() (0.0s)
+Then The 'Contract Management Software | SpringCM' link is visible
+-> done: SearchSteps.ThenTheLinkIsVisible("Contract Manageme...") (0.2s)
+Result5 StandardError:
+
+Result6 Name:	SearchTextIsDisplayed
+Result6 Outcome:	Passed
+Result6 Duration:	0:00:12.786484
+Result6 StackTrace:
+Result6 Message:
+Result6 StandardOutput:	
+Given The application running
+-> done: SearchSteps.GivenIHaveTheApplicationRunning() (9.6s)
+When I click on search button
+-> done: SearchSteps.WhenIClickOnSearchButton() (0.1s)
+And I enter 'Contract Management' on the search field
+-> done: SearchSteps.WhenIEnterOnTheSearchField("Contract Management") (2.0s)
+Then 'Contract Management' is displayed on the search field
+-> done: SearchSteps.ThenIsDisplayedOnTheSearchField("Contract Management") (0.0s)
+Result6 StandardError:
+
+Result7 Name:	SeeSpringCMInAction
+Result7 Outcome:	Passed
+Result7 Duration:	0:00:22.4998444
+Result7 StackTrace:
+Result7 Message:
+Result7 StandardOutput:	
+Given The application running
+-> done: DemoSteps.GivenIHaveTheApplicationRunning() (8.4s)
+And The 'Contract management Software | SpringCM' is dispalyed in search results
+-> done: DemoSteps.GivenTheIsDispalyedInSearchResults("Contract manageme...") (3.1s)
+When I click on The 'Contract Management Software | SpringCM' result
+-> done: DemoSteps.WhenIClickOnTheLink("Contract Manageme...") (3.3s)
+And I click on the Watch Our Product Demo button
+-> done: DemoSteps.WhenIClickOnTheButton() (0.4s)
+When I fill in the required fields and play video
+  --- table step argument ---
+  | FirstName | LastName | Email                | Phone      | CompanyName | Country |
+  | John      | Doe      | JohnDoe@DocuSign.com | 6667778899 | DocuSign    | USA     |
+-> done: DemoSteps.WhenIFillInTheRequiredFieldsAndClickButton(<table>) (3.1s)
+Then The video player for the product demo displayed
+-> done: DemoSteps.ThenTheVideoPlayerForTheProductDemoDisplayed() (2.9s)
+Result7 StandardError:
+
+Result8 Name:	SpringCMResourceLibraryDisplayedOnTheMenu
+Result8 Outcome:	Passed
+Result8 Duration:	0:00:10.8300255
+Result8 StackTrace:
+Result8 Message:
+Result8 StandardOutput:	
+Given I have the application running
+-> done: ResourceLibrary.GivenIHaveTheApplicationRunning() (9.5s)
+When I select the 'Resources' from the navigation
+-> done: ResourceLibrary.WhenISelectTheMenu("Resources") (0.4s)
+Then The 'Resources Library' menu is displayed
+-> done: ResourceLibrary.ThenTheMenuIsDisplayed("Resources Library") (0.1s)
+Result8 StandardError:
+
+Result9 Name:	SpringCMResourceLibraryMediaTypesDropdowIsDisplayed
+Result9 Outcome:	Passed
+Result9 Duration:	0:00:12.7455452
+Result9 StackTrace:
+Result9 Message:
+Result9 StandardOutput:	
+Given I have the application running
+-> done: ResourceLibrary.GivenIHaveTheApplicationRunning() (7.4s)
+When I select the 'Resources' from the navigation
+-> done: ResourceLibrary.WhenISelectTheMenu("Resources") (0.4s)
+And I select the 'Resources Library' sub menu from the 'Resources' menu
+-> done: ResourceLibrary.WhenISelectTheSubMenuFromTheMenu("Resources Library", "Resources") (3.3s)
+Then The 'Media Types' dropdown list is displayed
+-> done: ResourceLibrary.ThenTheDropdownListIsDisplayed("Media Types") (0.3s)
+Result9 StandardError:
+
+Result10 Name:	SpringCMResourceLibraryPageIsDisplayed
+Result10 Outcome:	Passed
+Result10 Duration:	0:00:13.235583
+Result10 StackTrace:
+Result10 Message:
+Result10 StandardOutput:	
+Given I have the application running
+-> done: ResourceLibrary.GivenIHaveTheApplicationRunning() (7.2s)
+When I select the 'Resources' from the navigation
+-> done: ResourceLibrary.WhenISelectTheMenu("Resources") (0.4s)
+And I select the 'Resources Library' sub menu from the 'Resources' menu
+-> done: ResourceLibrary.WhenISelectTheSubMenuFromTheMenu("Resources Library", "Resources") (2.8s)
+Then The defualt page content is displayed on the 'Resources' page
+-> done: ResourceLibrary.ThenTheDefualtPageContentIsDisplayedOnThePage("Resources") (0.1s)
+Result10 StandardError:
+
+Result11 Name:	SpringCMResourceLibraryReportContentsAreDisplayed
+Result11 Outcome:	Passed
+Result11 Duration:	0:00:14.3433763
+Result11 StackTrace:
+Result11 Message:
+Result11 StandardOutput:	
+Given I have the application running
+-> done: ResourceLibrary.GivenIHaveTheApplicationRunning() (7.9s)
+When I select the 'Resources' from the navigation
+-> done: ResourceLibrary.WhenISelectTheMenu("Resources") (0.4s)
+And I select the 'Resources Library' sub menu from the 'Resources' menu
+-> done: ResourceLibrary.WhenISelectTheSubMenuFromTheMenu("Resources Library", "Resources") (3.3s)
+And I select 'Reports' from the 'Media Types' dropdown list
+-> done: ResourceLibrary.WhenISelectFromTheDropdownList("Reports", "Media Types") (0.5s)
+Then The 'report' content is displayed on the Resources page
+-> done: ResourceLibrary.ThenTheReportContentIsDisplayedOnThePage("report") (1.4s)
+Result11 StandardError:
+
