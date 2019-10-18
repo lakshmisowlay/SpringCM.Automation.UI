@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasePage.cs" />
+    <Compile Include="Extentions\ExpectedConditions.cs" />
     <Compile Include="Pages\ContractManagementPage.cs" />
     <Compile Include="Pages\DemoPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
@@ -67,9 +68,11 @@
     <Compile Include="Pages\ResourceLibrayPage.cs" />
     <Compile Include="Pages\SearchResultPage.cs" />
     <Compile Include="Pages\VideoPage.cs" />
+    <Compile Include="Extentions\WebDriverExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

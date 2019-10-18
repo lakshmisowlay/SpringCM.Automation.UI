@@ -7,11 +7,18 @@ Background: Application is Running
 Given The application running
 
 #place holder text is 'Search' not 'Type to search'
-Scenario: Search Contract Management in SpringCM
+Scenario: Search field is dispalyed
 	When I click on search button
 	Then Search field with 'Search' is displayed 
-	When I enter 'Contract Management' on the search field
+
+Scenario: Search text is displayed
+	When I click on search button
+	And I enter 'Contract Management' on the search field
 	Then 'Contract Management' is displayed on the search field
-	When I scroll to the bottom of the search results
+
+Scenario: Search result is available
+	When I click on search button
+	And I enter 'Contract Management' on the search field
+	And I scroll to the bottom of the search results
 	Then The 'Contract Management Software | SpringCM' link is visible
 

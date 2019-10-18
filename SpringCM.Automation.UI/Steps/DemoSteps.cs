@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SpringCM.Automation.PageObjects;
 using TechTalk.SpecFlow;
 
@@ -11,7 +10,7 @@ namespace SpringCM.Automation.UI.Steps
         private HomePage _homePage;
         private DemoPage _demoPage;
 
-        public DemoSteps(FeatureContext featureContext) : base(featureContext)
+        public DemoSteps(ScenarioContext context) : base(context)
         {
         }
 
@@ -44,7 +43,7 @@ namespace SpringCM.Automation.UI.Steps
         [When(@"I click on the Watch Our Product Demo button")]
         public void WhenIClickOnTheButton()
         {
-            ((ContractManagementPage)Application.CurrentPage).OpenDemo();
+            ((ContractManagementPage)Application.GetPage(Pages.ContractManagement)).OpenDemo();
         }
 
         [Then(@"The Contract Management Demo page is displayed")]
@@ -58,6 +57,8 @@ namespace SpringCM.Automation.UI.Steps
         [When(@"I play the demo by clearing the fields")]
         public void WhenIPlayTheDemo()
         {
+            Application.SwitchToLatestHandle();
+            _demoPage = ((DemoPage)Application.CurrentPage);
             _demoPage.ClearForm();
             _demoPage.PlayDemo();
         }
@@ -82,13 +83,16 @@ namespace SpringCM.Automation.UI.Steps
                 CompanyName = fieldInfo.Rows[0]["CompanyName"],
                 Country = fieldInfo.Rows[0]["Country"]
             };
+
+            Application.SwitchToLatestHandle();
+            _demoPage = ((DemoPage)Application.CurrentPage);
             _demoPage.FillFormAndPlay(userInfo);
         }
 
         [Then(@"The video player for the product demo displayed")]
         public void ThenTheVideoPlayerForTheProductDemoDisplayed()
         {
-            Assert.IsTrue(((VideoPage)Application.CurrentPage).VideoDispalyed);
+            Assert.IsTrue(((VideoPage)Application.GetPage(Pages.Video)).VideoDispalyed);
         }
 
     }

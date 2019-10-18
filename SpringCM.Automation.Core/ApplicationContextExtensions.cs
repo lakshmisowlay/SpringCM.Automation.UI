@@ -5,31 +5,31 @@ namespace SpringCM.Automation.Core
 {
     public static class ApplicationContextExtensions
     {
-        public static SpringCMApplication Application(this FeatureContext featureContext)
+        public static SpringCMApplication Application(this ScenarioContext context)
         {
-            if (featureContext == null)
-                throw new ArgumentNullException(nameof(featureContext));
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
 
-            return ApplicationInstanceManager.Instance.Get(GetAppKey(featureContext));
+            return ApplicationInstanceManager.Instance.Get(GetAppKey(context));
         }
 
-        public static void DetachApplication(this FeatureContext featureContext)
+        public static void DetachApplication(this ScenarioContext context)
         {
-            if (featureContext == null)
-                throw new ArgumentNullException(nameof(featureContext));
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
 
-            ApplicationInstanceManager.Instance.Remove(GetAppKey(featureContext));
+            ApplicationInstanceManager.Instance.Remove(GetAppKey(context));
         }
 
-        private static Guid GetAppKey(this FeatureContext featureContext)
+        private static Guid GetAppKey(this ScenarioContext context)
         {
             string key = ApplicationInstanceManager.Instance.InstanceKey;
-            if (!featureContext.ContainsKey(key))
+            if (!context.ContainsKey(key))
             {
-                featureContext.Add(key, Guid.NewGuid());
+                context.Add(key, Guid.NewGuid());
             }
 
-            return (Guid)featureContext[key];
+            return (Guid)context[key];
         }
 
     }

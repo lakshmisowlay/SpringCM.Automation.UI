@@ -11,7 +11,7 @@ namespace SpringCM.Automation.UI.Steps
     {
         private HomePage _homePage;
 
-        public ResourceLibrary(FeatureContext featureContext) : base(featureContext)
+        public ResourceLibrary(ScenarioContext context) : base(context)
         {
         }
 

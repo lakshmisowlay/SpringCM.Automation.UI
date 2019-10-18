@@ -9,13 +9,13 @@ namespace SpringCM.Automation.UI
     {
         public readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
-        protected FeatureContext FeatureContext { get; }
+        protected ScenarioContext ScenarioContext { get; }
         protected SpringCMApplication Application { get; }
 
-        public BaseSteps(FeatureContext featureContext)
+        public BaseSteps(ScenarioContext context)
         {
-            FeatureContext = featureContext;
-            Application = featureContext.Application();
+            ScenarioContext = context;
+            Application = context.Application();
         }
 
     }

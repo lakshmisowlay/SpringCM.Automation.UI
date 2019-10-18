@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System;
+using OpenQA.Selenium.Internal;
 
 namespace SpringCM.Automation.PageObjects
 {
@@ -11,7 +12,6 @@ namespace SpringCM.Automation.PageObjects
 
         public string PageIdentifier { get; set; }
         public IWebDriver WebDriver { get; }
-
         public BasePage(IWebDriver webDriver)
         {
             WebDriver = webDriver;
@@ -39,10 +39,15 @@ namespace SpringCM.Automation.PageObjects
                 return default;
             }
         }
-        protected IWebElement GetById(string automationId)
+        protected IWebElement GetById(string automationId, int waitInMs = 10)
         {
             try
             {
+                WebDriver
+                    .Wait()
+                    .ForDuration(System.TimeSpan.FromSeconds(waitInMs))
+                    .ForElementIsVisible(By.Id(automationId));
+
                 return WebDriver.FindElement(By.Id(automationId));
             }
             catch (Exception ex)

@@ -9,7 +9,7 @@ namespace SpringCM.Automation.UI
     public class SearchSteps : BaseSteps
     {
         private HomePage _homePage;
-        public SearchSteps(FeatureContext featureContext) : base(featureContext)
+        public SearchSteps(ScenarioContext context) : base(context)
         {
         }
         [Given(@"The application running")]
@@ -47,7 +47,7 @@ namespace SpringCM.Automation.UI
         {
             try
             {
-                var searchResultPage = (SearchResultPage)Application.CurrentPage;
+                var searchResultPage = (SearchResultPage)Application.GetPage(Pages.SearchResult);
 
                 //TODO: Not required
                 searchResultPage.ScrollToEnd();
@@ -65,7 +65,7 @@ namespace SpringCM.Automation.UI
         {
             try
             {
-                var searchResultPage = (SearchResultPage)Application.CurrentPage;
+                var searchResultPage = (SearchResultPage)Application.GetPage(Pages.SearchResult);
                 Assert.IsTrue(searchResultPage.HasResults(linkText));
             }
             catch (Exception e)

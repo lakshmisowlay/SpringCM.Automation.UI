@@ -1,17 +1,38 @@
 ﻿using SpringCM.Automation.Core;
+using System;
+using System.Diagnostics;
 using TechTalk.SpecFlow;
 
 namespace SpringCM.Automation.UI
 {
     [Binding]
     public class GlobalHooks
-    {  
-        [AfterFeature]
-        public static void CloseApplication(FeatureContext featureContext)
+    {
+        [AfterScenario()]
+        public static void CloseApplication(ScenarioContext context)
         {
-            var application = featureContext.Application();
+            var application = context.Application();
             application.Exit();
-            featureContext.DetachApplication();
+            context.DetachApplication();
+        }
+
+        [AfterTestRun()]
+        public static void KillDrivers()
+        {
+            //TODO: do the same for other drivers
+            try
+            {
+                var orphanProcesses = Process.GetProcessesByName("chromedrivers.exe");
+                foreach (var process in orphanProcesses)
+                {
+                    process.Kill();
+                }
+            }
+            catch (Exception)
+            {
+                //TODO
+            }
+
         }
     }
 }
