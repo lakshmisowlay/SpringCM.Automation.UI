@@ -13,5 +13,5 @@ Scenario: Search Contract Management in SpringCM
 	When I enter 'Contract Management' on the search field
 	Then 'Contract Management' is displayed on the search field
 	When I scroll to the bottom of the search results
-	Then The 'Contract management Software | SpringCM' link is visible
+	Then The 'Contract Management Software | SpringCM' link is visible
 

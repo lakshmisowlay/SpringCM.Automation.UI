@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SpringCM.Automation.PageObjects;
 using TechTalk.SpecFlow;
 
 namespace SpringCM.Automation.UI.Steps
 {
     [Binding, Scope(Feature = "ResourceLibrary")]
-    public class ResourceLibrary: BaseSteps
+    public class ResourceLibrary : BaseSteps
     {
+        private HomePage _homePage;
 
         public ResourceLibrary(FeatureContext featureContext) : base(featureContext)
         {
@@ -18,49 +16,56 @@ namespace SpringCM.Automation.UI.Steps
         [Given(@"I have the application running")]
         public void GivenIHaveTheApplicationRunning()
         {
-            ScenarioContext.Current.Pending();
+            _homePage = (HomePage)Application.GetPage(Pages.Home);
         }
 
-        [When(@"I select the '(.*)' menu")]
-        public void WhenISelectTheMenu(string p0)
+        [When(@"I select the '(.*)' from the navigation")]
+        public void WhenISelectTheMenu(string item)
         {
-            ScenarioContext.Current.Pending();
+            _homePage.OpenMenuItem(item);
         }
 
         [Then(@"The '(.*)' menu is displayed")]
-        public void ThenTheMenuIsDisplayed(string p0)
+        public void ThenTheMenuIsDisplayed(string item)
         {
-            ScenarioContext.Current.Pending();
+            Assert.IsTrue(_homePage.MenuItemDispalyed(item));
         }
 
         [When(@"I select the '(.*)' sub menu from the '(.*)' menu")]
-        public void WhenISelectTheSubMenuFromTheMenu(string p0, string p1)
+        public void WhenISelectTheSubMenuFromTheMenu(string subMenuItem, string mainMenuItem)
         {
-            ScenarioContext.Current.Pending();
+            _homePage.SelectSubMenu(mainMenuItem, subMenuItem);
         }
 
         [Then(@"The defualt page content is displayed on the '(.*)' page")]
-        public void ThenTheDefualtPageContentIsDisplayedOnThePage(string p0)
+        public void ThenTheDefualtPageContentIsDisplayedOnThePage(string pageName)
         {
-            ScenarioContext.Current.Pending();
+            Assert.AreEqual(Application.CurrentPage.Name, pageName);
         }
 
         [Then(@"The '(.*)' dropdown list is displayed")]
-        public void ThenTheDropdownListIsDisplayed(string p0)
+        public void ThenTheDropdownListIsDisplayed(string dropdown)
         {
-            ScenarioContext.Current.Pending();
+            var resourcesPage = (ResourceLibrayPage)Application.GetPage(Pages.ResourceLibrary);
+            Assert.IsTrue(resourcesPage.DropdownPresent(dropdown));
         }
 
         [When(@"I select '(.*)' from the '(.*)' dropdown list")]
-        public void WhenISelectFromTheDropdownList(string p0, string p1)
+        public void WhenISelectFromTheDropdownList(string option, string dropdown)
         {
-            ScenarioContext.Current.Pending();
+            var resourcesPage = (ResourceLibrayPage)Application.GetPage(Pages.ResourceLibrary);
+            resourcesPage.SelectOption(dropdown, option);
         }
 
-        [Then(@"The report content is displayed on the '(.*)' page")]
-        public void ThenTheReportContentIsDisplayedOnThePage(string p0)
+        [Then(@"The '(.*)' content is displayed on the Resources page")]
+        public void ThenTheReportContentIsDisplayedOnThePage(string contentType)
         {
-            ScenarioContext.Current.Pending();
+            var resourcesPage = (ResourceLibrayPage)Application.GetPage(Pages.ResourceLibrary);
+            var resourceContents = resourcesPage.GetResourceContents();
+            foreach (var resourceContent in resourceContents)
+            {
+                Assert.IsTrue(resourceContent.ContentType.ToLower() == contentType.ToLower());
+            }
         }
 
     }

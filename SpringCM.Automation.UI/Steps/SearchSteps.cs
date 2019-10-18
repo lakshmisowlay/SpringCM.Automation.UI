@@ -11,12 +11,15 @@ namespace SpringCM.Automation.UI
         public SearchSteps(FeatureContext featureContext) : base(featureContext)
         {
         }
-
+        [Given(@"The application running")]
+        public void GivenIHaveTheApplicationRunning()
+        {
+            _homePage = (HomePage)Application.GoTo(Pages.Home, true);
+        }
 
         [When(@"I click on search button")]
         public void WhenIClickOnSearchButton()
         {
-            _homePage = (HomePage)Application.GoTo(Pages.Home);
             _homePage.OpenSearchField();
         }
 
@@ -35,10 +38,8 @@ namespace SpringCM.Automation.UI
         [Then(@"'(.*)' is displayed on the search field")]
         public void ThenIsDisplayedOnTheSearchField(string searchText)
         {
-            Assert.AreEqual(_homePage.SearchText, searchText);
+            Assert.AreEqual(_homePage.SearchText.ToLower(), searchText.ToLower());
         }
-
-
 
         [When(@"I scroll to the bottom of the search results")]
         public void WhenIScrollToTheBottomOfTheSearchResults()

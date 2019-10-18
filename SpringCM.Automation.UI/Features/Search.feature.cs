@@ -118,7 +118,7 @@ this.FeatureBackground();
 #line 15
  testRunner.When("I scroll to the bottom of the search results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
- testRunner.Then("The \'Contract management Software | SpringCM\' link is visible", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("The \'Contract Management Software | SpringCM\' link is visible", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

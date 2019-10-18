@@ -13,9 +13,9 @@ namespace SpringCM.Automation.Core
         private static string Browser => ApplicationConfigManager.Instance.GetConfig("browser");
         public IPage CurrentPage => GetCurrentPage();
 
-        
 
-        private readonly IWebDriver _webDriver;
+
+        private IWebDriver _webDriver;
         private Dictionary<Pages, string> _pages;
 
         public SpringCMApplication()
@@ -33,8 +33,11 @@ namespace SpringCM.Automation.Core
             _pages = new Dictionary<Pages, string>
             {
                 {Pages.Home, BaseUrl},
-                {Pages.Demo, BaseUrl},
-                {Pages.ResourceLibrary, BaseUrl + "resources"}
+                {Pages.Demo, BaseUrl + "video-springcm-in-action-demo-lp"},
+                {Pages.ResourceLibrary, BaseUrl + "resources"},
+                {Pages.SearchResult, BaseUrl + "hs-search-results" },
+                {Pages.ContractManagement, BaseUrl+"products/contract-management" },
+                {Pages.Video,BaseUrl+"video-see-springcm-in-action-thank-you" }
             };
         }
 
@@ -47,9 +50,26 @@ namespace SpringCM.Automation.Core
                 _webDriver.Navigate().GoToUrl(uri);
             }
 
+            AcceptCookiesDialog(true);
+
             return GetPage(page);
         }
 
+        private void AcceptCookiesDialog(bool accept)
+        {
+            if (accept)
+            {
+                _webDriver.FindElement(By.Id("hs-eu-confirmation-button")).Click();
+            }
+        }
+
+        public void WaitForPageLoad(Pages page)
+        {
+            var waitTimeInMs = int.Parse(ApplicationConfigManager.Instance.GetConfig("page_wait_in_ms"));
+            _webDriver
+                .Wait()
+                .ForDuration(TimeSpan.FromMilliseconds(waitTimeInMs));
+        }
         public IPage GetPage(Pages page)
         {
             switch (page)
@@ -62,7 +82,11 @@ namespace SpringCM.Automation.Core
                     return new ResourceLibrayPage(_webDriver);
                 case Pages.SearchResult:
                     return new SearchResultPage(_webDriver);
-               
+
+                case Pages.ContractManagement:
+                    return new ContractManagementPage(_webDriver);
+                case Pages.Video:
+                    return new VideoPage(_webDriver);
             }
 
             return null;
@@ -77,9 +101,24 @@ namespace SpringCM.Automation.Core
         private IPage GetCurrentPage()
         {
             var currentUrl = _webDriver.Url;
-            string urlWithoutQueryString = currentUrl.Substring(0, currentUrl.IndexOf("?"));
-            var page = _pages.FirstOrDefault(p => p.Value == currentUrl).Key;
+            var hasParameters = currentUrl.IndexOf("?") > 0;
+            var urlWithoutQueryString = hasParameters ? currentUrl.Substring(0, currentUrl.IndexOf("?")) : currentUrl;
+            var page = _pages.FirstOrDefault(p => p.Value == urlWithoutQueryString).Key;
             return GetPage(page);
+        }
+
+
+        public void SwitchToLatestHandle()
+        {
+            var count = _webDriver.WindowHandles.Count;
+            if (count > 1)
+            {
+                var newHandle = _webDriver.WindowHandles[count - 1];
+                if (newHandle != _webDriver.CurrentWindowHandle)
+                {
+                    _webDriver = _webDriver.SwitchTo().Window(newHandle);
+                }
+            }
         }
     }
 }

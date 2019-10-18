@@ -1,6 +1,7 @@
-﻿using System;
-using NLog;
+﻿using NLog;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using System;
 
 namespace SpringCM.Automation.PageObjects
 {
@@ -43,7 +44,18 @@ namespace SpringCM.Automation.PageObjects
                 return default;
             }
         }
-
+        protected IWebElement GetByCss(string cssSelector, int waitTimeInSeconds = 10)
+        {
+            try
+            {
+                return WebDriver.FindElement(By.CssSelector(cssSelector));
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                return default;
+            }
+        }
         protected IWebElement GetByClass(string automationClass, int waitTimeInSeconds = 10)
         {
             try
@@ -57,5 +69,25 @@ namespace SpringCM.Automation.PageObjects
             }
         }
 
+        protected IWebElement GetByXPath(string xPath, int waitTimeInSeconds = 10)
+        {
+            try
+            {
+                return WebDriver.FindElement(By.XPath(xPath));
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                return default;
+            }
+        }
+
+        public void MouseHover(IWebElement menuItem)
+        {
+            Actions action = new Actions(WebDriver);
+            action.MoveToElement(menuItem).Perform();
+        }
+
+        public string Name { get; set; }
     }
 }

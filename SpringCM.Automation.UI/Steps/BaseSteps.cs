@@ -1,5 +1,4 @@
 ﻿using SpringCM.Automation.Core;
-using SpringCM.Automation.PageObjects;
 using TechTalk.SpecFlow;
 
 namespace SpringCM.Automation.UI
@@ -16,10 +15,5 @@ namespace SpringCM.Automation.UI
             Application = featureContext.Application();
         }
 
-        [Given(@"The application running")]
-        public void GivenIHaveTheApplicationRunning()
-        {
-            Application.GoTo(Pages.Home);
-        }
     }
 }

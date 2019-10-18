@@ -5,6 +5,8 @@
         Home,
         Demo,
         ResourceLibrary,
-        SearchResult
+        SearchResult,
+        ContractManagement,
+        Video
     }
 }

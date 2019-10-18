@@ -92,7 +92,7 @@ namespace SpringCM.Automation.UI.Features
         {
 #line 6
 #line 7
-testRunner.Given("The application running", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("The application running", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -110,20 +110,35 @@ this.FeatureBackground();
 #line 10
  testRunner.Given("The \'Contract management Software | SpringCM\' is dispalyed in search results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
- testRunner.When("I click on \'The \'Contract management Software | SpringCM\' link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I click on The \'Contract Management Software | SpringCM\' result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
- testRunner.Then("The Contract Management page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("The \'Contract Management\' page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.When("I click on the \'Watch Our Product Demo\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I click on the Watch Our Product Demo button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
  testRunner.Then("The Contract Management Demo page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 15
- testRunner.When("I click on the \'Play\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I play the demo by clearing the fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
  testRunner.Then("The validation messages are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "FirstName",
+                        "LastName",
+                        "Email",
+                        "Phone",
+                        "CompanyName",
+                        "Country"});
+            table1.AddRow(new string[] {
+                        "John",
+                        "Doe",
+                        "JohnDoe@DocuSign.com",
+                        "6667778899",
+                        "DocuSign",
+                        "USA"});
 #line 17
- testRunner.When("I fill in the required fields and click \'Play\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 18
+ testRunner.When("I fill in the required fields and play video", ((string)(null)), table1, "When ");
+#line 20
  testRunner.Then("The video player for the product demo displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
